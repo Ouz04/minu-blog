@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -27,6 +28,12 @@ class Article
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      */
     private $author;
+
+    public function __construct()
+    {
+       
+        $this->createdAt=new DateTime();
+    }
 
 
     public function getName(): ?string
